@@ -42,7 +42,7 @@ decoded = Activation('sigmoid')(x)
 autoencoder = Model(input_img, decoded)
 autoencoder.compile(optimizer='adam', loss='mse')
 """
-autoencoder = load_model("autoencoder_modelmse.h5")
+autoencoder = load_model("autoencoder_model120.h5")
 
 #train the model
 train_datagen = ImageDataGenerator(

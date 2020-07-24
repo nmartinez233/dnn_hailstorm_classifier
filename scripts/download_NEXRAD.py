@@ -8,8 +8,8 @@ conn = nexradaws.NexradAwsInterface()
 
 central_timezone = pytz.timezone('UTC')
 radar_id = 'KLOT'
-start = central_timezone.localize(datetime(2020,6,28,0,0))
-end = central_timezone.localize (datetime(2020,7,15,0,0))
+start = central_timezone.localize(datetime(2019,4,1,0,0))
+end = central_timezone.localize (datetime(2019,5,31,0,0))
 scans = conn.get_avail_scans_in_range(start, end, radar_id)
 print("There are {} scans available between {} and {}\n".format(len(scans), start, end))
 print(scans[0:4])
