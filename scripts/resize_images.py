@@ -1,7 +1,7 @@
 from PIL import Image                                              
 import os, sys                       
 
-path = "../data/images/256_pngs/"
+path = "../data/images/full_pngs/"
 dirs = os.listdir( path )                                       
 
 def resize():
