@@ -61,7 +61,7 @@ x_test = train_datagen.flow_from_directory(
         class_mode='input')
 
 autoencoder.summary()
-autoencoder.fit(x=x_train, batch_size=10, epochs=25, validation_data=x_test, verbose=1, shuffle=True)
+#autoencoder.fit(x=x_train, batch_size=10, epochs=25, validation_data=x_test, verbose=1, shuffle=True)
 
 print("\nFinished Training... \n")
 
