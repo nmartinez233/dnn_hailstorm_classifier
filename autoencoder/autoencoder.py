@@ -42,7 +42,7 @@ import glob
 #autoencoder = Model(input_img, decoded)
 #autoencoder.compile(optimizer='adam', loss='mse')
 
-autoencoder = load_model("autoencoder.h5")
+autoencoder = load_model("autoencoder_weights.h5")
 
 #train the model
 train_datagen = ImageDataGenerator(
@@ -61,12 +61,12 @@ x_test = train_datagen.flow_from_directory(
         class_mode='input')
 
 autoencoder.summary()
-#autoencoder.fit(x=x_train, batch_size=10, epochs=5, validation_data=x_test, verbose=1, shuffle=True)
+autoencoder.fit(x=x_train, batch_size=10, epochs=25, validation_data=x_test, verbose=1, shuffle=True)
 
 print("\nFinished Training... \n")
 
 # saving whole model
-autoencoder.save('autoencoder.h5')
+autoencoder.save('autoencoder_weights.h5')
 
 print("\nFinished Saving... \n")
 
