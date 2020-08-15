@@ -1,10 +1,14 @@
 # Imports
 import random, cv2, os, sys, shutil
 from sklearn.cluster import KMeans
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.decomposition import PCA
 import numpy as np
 import keras
 import tensorflow as tf
+import matplotlib.pyplot as plt
+import glob
+
 
 class image_clustering:
 
@@ -31,7 +35,8 @@ class image_clustering:
 		print("\n output folders created.")
 		os.makedirs("output")
 		for i in range(self.n_clusters):
-			os.makedirs("output\\cluster" + str(i))
+			os.makedirs("output/cluster" + str(i))
+		os.makedirs("output/stitches")
 		print("\n Object of class \"image_clustering\" has been initialized.")
 
 	def load_images(self):
@@ -40,7 +45,6 @@ class image_clustering:
 			self.images.append(cv2.cvtColor(cv2.resize(cv2.imread(self.folder_path + image), (256,256)), cv2.COLOR_BGR2RGB))
 
 		self.images = np.float32(self.images)
-		print(self.images.shape)
 		self.images /= 255
 		print("\n " + str(self.max_examples) + " images from the \"" + self.folder_path + "\" folder have been loaded in a random order.")
 
@@ -51,7 +55,7 @@ class image_clustering:
 			if use_imagenets.lower() == "vgg16":
 				model1 = tf.keras.applications.VGG16(include_top=False, weights="imagenet", input_shape=(256,256,3))
 			elif use_imagenets.lower() == "vgg19":
-				model1 = tf.keras.applications.vgg19.vgg19(include_top=False, weights="imagenet", input_shape=(256,256,3))
+				model1 = tf.keras.applications.VGG19(include_top=False, weights="imagenet", input_shape=(256,256,3))
 			elif use_imagenets.lower() == "resnet50":
 				model1 = keras.applications.resnet50.ResNet50(include_top=False, weights="imagenet", input_shape=(256,256,3))
 			elif use_imagenets.lower() == "xception":
@@ -67,8 +71,8 @@ class image_clustering:
 			else:
 				print("\n\n Please use one of the following keras applications only [ \"vgg16\", \"vgg19\", \"resnet50\", \"xception\", \"inceptionv3\", \"inceptionresnetv2\", \"densenet\", \"mobilenetv2\" ] or False")
 				sys.exit()
-			print(self.images.shape)
 			pred = model1.predict(self.images)
+			print('Finished Predicting')
 			images_temp = pred.reshape(self.images.shape[0], -1)
 			if self.use_pca == False: 
 				self.images_new = images_temp
@@ -82,24 +86,91 @@ class image_clustering:
 	def clustering(self):
 		model = KMeans(n_clusters=self.n_clusters, n_jobs=-1, random_state=728)
 		model.fit(self.images_new)
+		print('first clustering complete, generating images')
+
+		#temp.compute_best()
+		
+		print('printed image')
 		predictions = model.predict(self.images_new)
 		#print(predictions)
 		for i in range(self.max_examples):
-			shutil.copy2(self.folder_path+self.image_paths[i], "output\cluster"+str(predictions[i]))
+			shutil.copy2(self.folder_path+self.image_paths[i], "output/cluster"+str(predictions[i]))
 		print("\n Clustering complete! \n\n Clusters and the respective images are stored in the \"output\" folder.")
+
+	
+	def compute_best(self):
+		mms = MinMaxScaler()
+		mms.fit(self.images_new)
+		data_transformed = mms.transform(self.images_new)
+
+		Sum_of_squared_distances = []
+		K = range(1,26)
+		for k in K:
+			km = KMeans(n_clusters=k, n_jobs=-1, random_state=728)
+			km = km.fit(data_transformed)
+			Sum_of_squared_distances.append(km.inertia_)
+			print("K %d processed" % k)
+		
+		plt.plot(K, Sum_of_squared_distances, 'bx-')
+		plt.xlabel('k')
+		plt.ylim(0, 5e6)
+		plt.ylabel('Sum_of_squared_distances')
+		plt.title('Elbow Method For Optimal k')
+		plt.show()
+
+	def make_stitch(self):
+		print("Making stitch...")
+		for i in range(number_of_clusters):
+			temp_directory = "output/cluster"+str(i)+"/*png"
+			temp_filelist = glob.glob(temp_directory)
+
+			length = float(len(temp_filelist))
+
+			
+			probability = (length/10.)/100.
+			images = []
+
+			for file_name in temp_filelist:
+				decision = np.random.choice([0,1], p=[1.-probability, probability])
+				if decision == 1:
+					images.append(cv2.cvtColor(cv2.resize(cv2.imread(file_name), (256,256)), cv2.COLOR_BGR2RGB))
+					print(file_name, " appended!")
+				else:
+					print(file_name, " skipped!")
+
+			fig=plt.figure(figsize=(8, 8))
+			columns = 3
+			rows = 3
+			for x in range(1, columns*rows +1):
+				if x >= len(images):
+					files = os.listdir("output/cluster"+str(i)+"/")
+					index = random.randrange(0, len(files))
+					print(files[index], "was chosen randomly!")
+					img = cv2.cvtColor(cv2.resize(cv2.imread("output/cluster"+str(i)+"/"+files[index]), (256,256)), cv2.COLOR_BGR2RGB)
+				else:
+					img = images[x]
+				fig.add_subplot(rows, columns, x)
+				plt.imshow(img)
+			plt.savefig("output/stitches/concat"+str(i)+".png")
+
+
+			del temp_directory
+			del temp_filelist
+			del images
+
 
 if __name__ == "__main__":
 
 	print("\n\n \t\t START\n\n")
 
-	number_of_clusters = 10 # cluster names will be 0 to number_of_clusters-1
+	number_of_clusters = 6 # cluster names will be 0 to number_of_clusters-1
 
 	data_path = "../data/images/full_pngs/" # path of the folder that contains the images to be considered for the clustering (The folder must contain only image files)
 
 	max_examples = None # number of examples to use, if "None" all of the images will be taken into consideration for the clustering
 	# If the value is greater than the number of images present  in the "data_path" folder, it will use all the images and change the value of this variable to the number of images available in the "data_path" folder. 
 
-	use_imagenets = 'ResNet50'
+	use_imagenets = 'DenseNet'
 	# choose from: "Xception", "VGG16", "VGG19", "ResNet50", "InceptionV3", "InceptionResNetV2", "DenseNet", "MobileNetV2" and "False" -> Default is: False
 	# you have to use the correct spelling! (case of the letters are irrelevant as the lower() function has been used)
 
@@ -112,5 +183,6 @@ if __name__ == "__main__":
 	temp.load_images()
 	temp.get_new_imagevectors()
 	temp.clustering()
+	temp.make_stitch()
 
 	print("\n\n\t\t END\n\n")
