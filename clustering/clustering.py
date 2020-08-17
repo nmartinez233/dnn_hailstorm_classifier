@@ -163,7 +163,7 @@ if __name__ == "__main__":
 
 	print("\n\n \t\t START\n\n")
 
-	number_of_clusters = 6 # cluster names will be 0 to number_of_clusters-1
+	number_of_clusters = 10 # cluster names will be 0 to number_of_clusters-1
 
 	data_path = "../data/images/full_pngs/" # path of the folder that contains the images to be considered for the clustering (The folder must contain only image files)
 
