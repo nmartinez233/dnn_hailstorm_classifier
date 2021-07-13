@@ -1,8 +1,8 @@
 from PIL import Image                                              
 import os, sys                       
 
-path = "../data/images/full_pngs/"
-dirs = os.listdir( path )                                       
+path = "../clustering/KTLX_4/trained_clusters/cluster3/"
+dirs = os.listdir(path)                                       
 
 def resize():
     for item in dirs:

@@ -81,10 +81,10 @@ def make_plot(filename):
 
         return #do not create image
 
-file_directory = '../data/NEXRAD/*'
+file_directory = '../data/KTLX_data/*'
 file_list = glob.glob(file_directory)
 print(file_list)
-png_out_dir = '../data/images/full_pngs/'
+png_out_dir = '../data/KTLX_pngs/'
 i = 0
 use('agg')
 

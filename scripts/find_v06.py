@@ -1,19 +1,19 @@
 import shutil, glob
 
-png_directory = "../clustering/DenseNet_4/cluster3/*png"
+png_directory = "../clustering/KTLX_4/trained_clusters/cluster3/*png"
 png_list = glob.glob(png_directory)
 
-nexrad_directory = '../data/NEXRAD/'
+nexrad_directory = '../data/KTLX_data/'
 
-copy_to_directory = "../data/used_NEXRAD_data/cluster3/"
+copy_to_directory = "../data/used_KTLX_data/cluster3/"
 
 def find_v06(file_name):
-    inter_name = "KLOT"+file_name[34:(len(file_name)-4)]+"_V06"
-    print(inter_name)
+    inter_name = "KTLX"+file_name[47:(len(file_name)-4)]+"_V06"
+    #print(inter_name)
     v06_name = inter_name[:len(inter_name)-11]+"_"+inter_name[len(inter_name)-10:]
-    print(v06_name)
+    #print(v06_name)
     full_name = nexrad_directory+v06_name
-    print(full_name)
+    #print(full_name)
 
     full_copy = copy_to_directory+v06_name
 

@@ -21,7 +21,7 @@ def heatmap(R,sx,sy, filename):
     plt.figure(figsize=(sx,sy))
     plt.subplots_adjust(left=0,right=1,bottom=0,top=1)
     plt.axis('off')
-    plt.imsave(png_out_dir+filename[30:],R,cmap=my_cmap,vmin=-b,vmax=b)
+    plt.imsave(png_out_dir+filename[38:],R,cmap=my_cmap,vmin=-b,vmax=b)
 
 def toconv(layers):
 
@@ -112,9 +112,9 @@ def make_LRP(filename):
         heatmap(numpy.array(R[l][0]).sum(axis=0),0.5*i+1.5,0.5*i+1.5, filename)
 
 
-data_directory = '../clustering/KTLX_4/cluster3/*png*'
+data_directory = '../clustering/KTLX_4/trained_clusters/cluster3/*png*'
 data_list = glob.glob(data_directory)
-png_out_dir = '../clustering/KTLX_4/LRP_results/cluster3/'
+png_out_dir = '../clustering/KTLX_4/trained_clusters/LRP_results/'
 i = 0
 
 
@@ -134,4 +134,4 @@ if __name__ == "__main__":
         i = 1
     futures = client.map(make_LRP, data_list)
     wait(futures)
-    client.close() 
+    client.close()

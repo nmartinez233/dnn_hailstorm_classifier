@@ -99,7 +99,7 @@ torch.manual_seed(0)
 np.random.seed(0)
 
 # set the path to the dataset
-path_to_data = '../clustering/KTLX_4/cropped_pngs/'
+path_to_data = '../clustering/KLOT_4/cropped_clusters/unclustered/'
 
 
 # %%
@@ -234,7 +234,7 @@ optimizer = torch.optim.SGD(
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 model.to(device)
-"""
+
 avg_loss = 0.
 avg_output_std = 0.
 for e in range(epochs):
@@ -284,9 +284,9 @@ state_dict = {
     'resnet18_parameters': pretrained_resnet_backbone.state_dict()
 }
 
-torch.save(state_dict, 'weather.pth')
-"""
-torch.load("weather.pth")
+torch.save(state_dict, 'KLOT.pth')
+
+#torch.load("weather.pth")
 
 
 # %%
@@ -398,7 +398,7 @@ def cluster():
     print(len(predictions))
     print('didn\'t fail here')
     for i in range(len(filenames)):
-        shutil.copy2("../clustering/KTLX_4/cropped_pngs/"+filenames[i], "output/cluster"+str(predictions[i]))
+        shutil.copy2("../clustering/KLOT_4/unclustered/"+filenames[i], "output/cluster"+str(predictions[i]))
     print("\n Clustering complete! \n\n Clusters and the respective images are stored in the \"output\" folder.")
 
 def make_stitch():
@@ -455,11 +455,10 @@ make_stitch()
 # Let's get to work! The plots are shown below.
 
 example_images = [
-        '20190706-214340.png', # convection
-        '20200815-031856.png', # clear air
-        '20200728-141933.png', # rainfall
-        '20200805-084657.png', # widespread downpour
-        '20200317-190918.png', # small rainfall
+        '20190703-000933.png', # convection
+        '20190701-221848.png', # clear airv
+        '20190912-025757.png', # rainfall
+        '20190701-020312.png', # widespread downpour
     ]
 
 

@@ -1,7 +1,7 @@
 from PIL import Image                                              
 import os, sys                       
 
-path = "../clustering/KTLX_4/cropped_pngs/"
+path = "../clustering/KLOT_4/cropped_clusters/cluster3/"
 dirs = os.listdir( path )                                       
 
 def crop():
