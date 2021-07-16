@@ -8,6 +8,11 @@ import keras
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import glob
+import math
+import torch
+import torch.nn as nn
+import torchvision
+import lightly
 
 
 class image_clustering:
@@ -66,12 +71,37 @@ class image_clustering:
 				model1 = keras.applications.inception_resnet_v2.InceptionResNetV2(include_top=False, weights='imagenet', input_shape=(256,256,3))
 			elif use_imagenets.lower() == "densenet":
 				model1 = keras.applications.densenet.DenseNet201(include_top=False, weights='imagenet', input_shape=(256,256,3))
-			elif use_imagenets.lower() == "mobilenetv2":
-				model1 = tf.keras.applications.mobilenetv2.MobileNetV2(input_shape=(256,256,3), alpha=1.0, depth_multiplier=1, include_top=False, weights='imagenet', pooling=None)
+			elif use_imagenets.lower() == "other":
+				resnet = torchvision.models.resnet18()
+				backbone = nn.Sequential(*list(resnet.children())[:-1])
+				# dimension of the embeddings
+				num_ftrs = 512
+				# dimension of the output of the prediction and projection heads
+				out_dim = proj_hidden_dim = 512
+				# the prediction head uses a bottleneck architecture
+				pred_hidden_dim = 128
+				# use 2 layers in the projection head
+				num_mlp_layers = 2
+
+				# create the SimSiam model using the backbone from above
+				model1 = lightly.models.SimSiam(
+					backbone,
+					num_ftrs=num_ftrs,
+					proj_hidden_dim=pred_hidden_dim,
+					pred_hidden_dim=pred_hidden_dim,
+					out_dim=out_dim,
+					num_mlp_layers=num_mlp_layers
+				)
 			else:
 				print("\n\n Please use one of the following keras applications only [ \"vgg16\", \"vgg19\", \"resnet50\", \"xception\", \"inceptionv3\", \"inceptionresnetv2\", \"densenet\", \"mobilenetv2\" ] or False")
 				sys.exit()
-			pred = model1.predict(self.images)
+			save_path = '../lightly/weather.pth'
+			torch.load(save_path)
+			model1.eval()
+    
+            # Generate prediction
+			pred = model1(self.images)
+			#pred = model1.predict(self.images)
 			print('Finished Predicting')
 			images_temp = pred.reshape(self.images.shape[0], -1)
 			if self.use_pca == False: 
@@ -92,7 +122,7 @@ class image_clustering:
 		
 		print('printed image')
 		predictions = model.predict(self.images_new)
-		#print(predictions)
+		print('didn\'t fail here')
 		for i in range(self.max_examples):
 			shutil.copy2(self.folder_path+self.image_paths[i], "output/cluster"+str(predictions[i]))
 		print("\n Clustering complete! \n\n Clusters and the respective images are stored in the \"output\" folder.")
@@ -163,21 +193,21 @@ if __name__ == "__main__":
 
 	print("\n\n \t\t START\n\n")
 
-	number_of_clusters = 10 # cluster names will be 0 to number_of_clusters-1
+	number_of_clusters = 4 # cluster names will be 0 to number_of_clusters-1
 
-	data_path = "../data/images/full_pngs/" # path of the folder that contains the images to be considered for the clustering (The folder must contain only image files)
+	data_path = "KTLX_4/cropped_pngs/" # path of the folder that contains the images to be considered for the clustering (The folder must contain only image files)
 
 	max_examples = None # number of examples to use, if "None" all of the images will be taken into consideration for the clustering
 	# If the value is greater than the number of images present  in the "data_path" folder, it will use all the images and change the value of this variable to the number of images available in the "data_path" folder. 
 
-	use_imagenets = 'DenseNet'
+	use_imagenets = 'other'
 	# choose from: "Xception", "VGG16", "VGG19", "ResNet50", "InceptionV3", "InceptionResNetV2", "DenseNet", "MobileNetV2" and "False" -> Default is: False
 	# you have to use the correct spelling! (case of the letters are irrelevant as the lower() function has been used)
 
 	if use_imagenets == False:
 		use_pca = False
 	else:
-		use_pca = False # Make it True if you want to use PCA for dimentionaity reduction -> Default is: False
+		use_pca = False #Make it True if you want to use PCA for dimentionaity reduction -> Default is: False
 
 	temp = image_clustering(data_path, number_of_clusters, max_examples, use_imagenets, use_pca)
 	temp.load_images()
