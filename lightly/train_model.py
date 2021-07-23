@@ -99,7 +99,7 @@ torch.manual_seed(0)
 np.random.seed(0)
 
 # set the path to the dataset
-path_to_data = '../clustering/KLOT_4/cropped_clusters/unclustered/'
+path_to_data = '../clustering/KLZK_4/unclustered_pngs/'
 
 
 # %%
@@ -234,7 +234,7 @@ optimizer = torch.optim.SGD(
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 model.to(device)
-
+"""
 avg_loss = 0.
 avg_output_std = 0.
 for e in range(epochs):
@@ -285,8 +285,8 @@ state_dict = {
 }
 
 torch.save(state_dict, 'KLOT.pth')
-
-#torch.load("weather.pth")
+"""
+torch.load("KTLX.pth")
 
 
 # %%
@@ -388,7 +388,6 @@ def get_scatter_plot_with_thumbnails():
 
 # get a scatter plot with thumbnail overlays
 get_scatter_plot_with_thumbnails()
-print(filenames)
 
 def cluster():
     model2 = KMeans(n_clusters=4, n_jobs=-1, random_state=728)
@@ -398,7 +397,7 @@ def cluster():
     print(len(predictions))
     print('didn\'t fail here')
     for i in range(len(filenames)):
-        shutil.copy2("../clustering/KLOT_4/unclustered/"+filenames[i], "output/cluster"+str(predictions[i]))
+        shutil.copy2("../clustering/KLZK_4/unclustered_pngs/"+filenames[i], "output/cluster"+str(predictions[i]))
     print("\n Clustering complete! \n\n Clusters and the respective images are stored in the \"output\" folder.")
 
 def make_stitch():
@@ -457,7 +456,7 @@ make_stitch()
 example_images = [
         '20190703-000933.png', # convection
         '20190701-221848.png', # clear airv
-        '20190912-025757.png', # rainfall
+        '20190913-084246.png', # rainfall
         '20190701-020312.png', # widespread downpour
     ]
 
@@ -515,8 +514,8 @@ def plot_nearest_neighbors_3x3(example_image: str, i: int):
 
 
 # show example images for each cluster
-for i, example_image in enumerate(example_images):
-    plot_nearest_neighbors_3x3(example_image, i)
+#for i, example_image in enumerate(example_images):
+#    plot_nearest_neighbors_3x3(example_image, i)
 
 
 # %%

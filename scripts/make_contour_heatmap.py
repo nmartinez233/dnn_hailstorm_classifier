@@ -38,9 +38,9 @@ def make_heatmap(mean_reflectivity):
     return
 
 
-data_directory = '../data/KTLX_NETCDF4/cluster0/*nc*'
+data_directory = '../data/KLZK_NETCDF4/cluster0/*nc*'
 data_list = glob.glob(data_directory)
-png_out_dir = '../data/netCDF4/contour/'
+png_out_dir = '../clustering/KLZK_4/KTLX_trained/contour/'
 sum_reflectivity_array = np.zeros((600,600, 1))
 cluster = "cluster0.png"
 cluster_name = 'cluster0'

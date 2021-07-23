@@ -23,9 +23,9 @@ j = 0
 if __name__ == "__main__":
     for j in range(3,4):
         i = 0
-        file_directory = '../data/used_KTLX_data/cluster%d/*V06*' % (j)
+        file_directory = '../data/used_KLZK_data/cluster%d/*V06*' % (j)
         file_list = glob.glob(file_directory)
-        grid_file_directory = '../data/KTLX_NETCDF4/cluster%d' % (j)
+        grid_file_directory = '../data/KLZK_NETCDF4/cluster%d' % (j)
         
         Cluster = SLURMCluster(processes=6, cores=36, memory='128GB', walltime='2:00:00')
         Cluster.scale(36)

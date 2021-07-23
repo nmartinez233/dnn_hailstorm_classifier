@@ -1,0 +1,103 @@
+distributed.nanny - INFO -         Start Nanny at: 'tcp://10.70.129.187:39396'
+distributed.nanny - INFO -         Start Nanny at: 'tcp://10.70.129.187:45927'
+distributed.nanny - INFO -         Start Nanny at: 'tcp://10.70.129.187:35531'
+distributed.nanny - INFO -         Start Nanny at: 'tcp://10.70.129.187:37293'
+distributed.nanny - INFO -         Start Nanny at: 'tcp://10.70.129.187:34253'
+distributed.nanny - INFO -         Start Nanny at: 'tcp://10.70.129.187:37359'
+distributed.diskutils - INFO - Found stale lock file and directory '/lcrc/group/earthscience/nmartinez/dnn_hailstorm_classifier/scripts/dask-worker-space/worker-dnn60fgr', purging
+distributed.diskutils - INFO - Found stale lock file and directory '/lcrc/group/earthscience/nmartinez/dnn_hailstorm_classifier/scripts/dask-worker-space/worker-iz5gsnt1', purging
+distributed.diskutils - INFO - Found stale lock file and directory '/lcrc/group/earthscience/nmartinez/dnn_hailstorm_classifier/scripts/dask-worker-space/worker-ua1b_6dd', purging
+distributed.diskutils - INFO - Found stale lock file and directory '/lcrc/group/earthscience/nmartinez/dnn_hailstorm_classifier/scripts/dask-worker-space/worker-bmxu364l', purging
+distributed.worker - INFO -       Start worker at:  tcp://10.70.129.187:43959
+distributed.worker - INFO -          Listening to:  tcp://10.70.129.187:43959
+distributed.worker - INFO -          dashboard at:        10.70.129.187:39446
+distributed.worker - INFO -       Start worker at:  tcp://10.70.129.187:44812
+distributed.worker - INFO - Waiting to connect to:   tcp://140.221.70.8:45714
+distributed.worker - INFO -       Start worker at:  tcp://10.70.129.187:37608
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO -          Listening to:  tcp://10.70.129.187:44812
+distributed.worker - INFO -          Listening to:  tcp://10.70.129.187:37608
+distributed.worker - INFO -          dashboard at:        10.70.129.187:39436
+distributed.worker - INFO -          dashboard at:        10.70.129.187:33360
+distributed.worker - INFO -               Threads:                          6
+distributed.worker - INFO - Waiting to connect to:   tcp://140.221.70.8:45714
+distributed.worker - INFO - Waiting to connect to:   tcp://140.221.70.8:45714
+distributed.worker - INFO -       Start worker at:  tcp://10.70.129.187:33392
+distributed.worker - INFO -                Memory:                  19.87 GiB
+distributed.worker - INFO -       Start worker at:  tcp://10.70.129.187:41905
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO -       Start worker at:  tcp://10.70.129.187:43472
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO -       Local Directory: /lcrc/group/earthscience/nmartinez/dnn_hailstorm_classifier/scripts/dask-worker-space/worker-2zoc1nyw
+distributed.worker - INFO -          Listening to:  tcp://10.70.129.187:33392
+distributed.worker - INFO -          Listening to:  tcp://10.70.129.187:41905
+distributed.worker - INFO -               Threads:                          6
+distributed.worker - INFO -          Listening to:  tcp://10.70.129.187:43472
+distributed.worker - INFO -          dashboard at:        10.70.129.187:34518
+distributed.worker - INFO -               Threads:                          6
+distributed.worker - INFO -          dashboard at:        10.70.129.187:35518
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO -                Memory:                  19.87 GiB
+distributed.worker - INFO - Waiting to connect to:   tcp://140.221.70.8:45714
+distributed.worker - INFO -                Memory:                  19.87 GiB
+distributed.worker - INFO - Waiting to connect to:   tcp://140.221.70.8:45714
+distributed.worker - INFO -       Local Directory: /lcrc/group/earthscience/nmartinez/dnn_hailstorm_classifier/scripts/dask-worker-space/worker-tgnd4uv7
+distributed.worker - INFO -          dashboard at:        10.70.129.187:39885
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO -       Local Directory: /lcrc/group/earthscience/nmartinez/dnn_hailstorm_classifier/scripts/dask-worker-space/worker-mp2t1vw6
+distributed.worker - INFO - Waiting to connect to:   tcp://140.221.70.8:45714
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO -               Threads:                          6
+distributed.worker - INFO -               Threads:                          6
+distributed.worker - INFO -                Memory:                  19.87 GiB
+distributed.worker - INFO -               Threads:                          6
+distributed.worker - INFO -                Memory:                  19.87 GiB
+distributed.worker - INFO -       Local Directory: /lcrc/group/earthscience/nmartinez/dnn_hailstorm_classifier/scripts/dask-worker-space/worker-yapgfc8z
+distributed.worker - INFO -                Memory:                  19.87 GiB
+distributed.worker - INFO -       Local Directory: /lcrc/group/earthscience/nmartinez/dnn_hailstorm_classifier/scripts/dask-worker-space/worker-l9p42udi
+distributed.worker - INFO -       Local Directory: /lcrc/group/earthscience/nmartinez/dnn_hailstorm_classifier/scripts/dask-worker-space/worker-kum4h3ou
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO - -------------------------------------------------
+distributed.worker - INFO -         Registered to:   tcp://140.221.70.8:45714
+distributed.worker - INFO - -------------------------------------------------
+distributed.core - INFO - Starting established connection
+distributed.worker - INFO -         Registered to:   tcp://140.221.70.8:45714
+distributed.worker - INFO - -------------------------------------------------
+distributed.core - INFO - Starting established connection
+distributed.worker - INFO -         Registered to:   tcp://140.221.70.8:45714
+distributed.worker - INFO - -------------------------------------------------
+distributed.core - INFO - Starting established connection
+distributed.worker - INFO -         Registered to:   tcp://140.221.70.8:45714
+distributed.worker - INFO - -------------------------------------------------
+distributed.core - INFO - Starting established connection
+distributed.worker - INFO -         Registered to:   tcp://140.221.70.8:45714
+distributed.worker - INFO - -------------------------------------------------
+distributed.core - INFO - Starting established connection
+distributed.worker - INFO -         Registered to:   tcp://140.221.70.8:45714
+distributed.worker - INFO - -------------------------------------------------
+distributed.core - INFO - Starting established connection
+distributed.core - INFO - Event loop was unresponsive in Worker for 1.44s.  This is often caused by long-running GIL-holding functions or moving large chunks of data. This can cause timeouts and instability.
+distributed.core - INFO - Event loop was unresponsive in Worker for 1.45s.  This is often caused by long-running GIL-holding functions or moving large chunks of data. This can cause timeouts and instability.
+distributed.core - INFO - Event loop was unresponsive in Worker for 1.45s.  This is often caused by long-running GIL-holding functions or moving large chunks of data. This can cause timeouts and instability.
+distributed.core - INFO - Event loop was unresponsive in Worker for 1.44s.  This is often caused by long-running GIL-holding functions or moving large chunks of data. This can cause timeouts and instability.
+distributed.core - INFO - Event loop was unresponsive in Worker for 1.45s.  This is often caused by long-running GIL-holding functions or moving large chunks of data. This can cause timeouts and instability.
+distributed.core - INFO - Event loop was unresponsive in Worker for 1.45s.  This is often caused by long-running GIL-holding functions or moving large chunks of data. This can cause timeouts and instability.
+slurmstepd: error: *** JOB 2183084 ON bdw-0414 CANCELLED AT 2021-07-22T22:13:59 ***
+distributed.dask_worker - INFO - Exiting on signal 15
+distributed.nanny - INFO - Closing Nanny at 'tcp://10.70.129.187:39396'
+distributed.nanny - INFO - Closing Nanny at 'tcp://10.70.129.187:45927'
+distributed.nanny - INFO - Closing Nanny at 'tcp://10.70.129.187:35531'
+distributed.nanny - INFO - Closing Nanny at 'tcp://10.70.129.187:37293'
+distributed.nanny - INFO - Closing Nanny at 'tcp://10.70.129.187:34253'
+distributed.nanny - INFO - Closing Nanny at 'tcp://10.70.129.187:37359'
+distributed.nanny - INFO - Worker process 20709 was killed by unknown signal
+distributed.nanny - INFO - Worker process 20713 was killed by unknown signal
+distributed.nanny - INFO - Worker process 20707 was killed by unknown signal
+distributed.nanny - INFO - Worker process 20715 was killed by unknown signal
+distributed.nanny - INFO - Worker process 20719 was killed by unknown signal
+distributed.nanny - INFO - Worker process 20711 was killed by unknown signal
+distributed.dask_worker - INFO - End worker

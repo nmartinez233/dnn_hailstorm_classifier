@@ -81,10 +81,9 @@ def make_plot(filename):
 
         return #do not create image
 
-file_directory = '../data/KTLX_data/*'
+file_directory = '../data/KLZK_data/*'
 file_list = glob.glob(file_directory)
-print(file_list)
-png_out_dir = '../data/KTLX_pngs/'
+png_out_dir = '../clustering/KLZK_4/KLZK_pngs/'
 i = 0
 use('agg')
 

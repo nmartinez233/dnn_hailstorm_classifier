@@ -1,7 +1,7 @@
 from PIL import Image                                              
 import os, sys                       
 
-path = "../clustering/KLOT_4/cropped_clusters/cluster3/"
+path = "../clustering/KLZK_4/test/"
 dirs = os.listdir( path )                                       
 
 def crop():
@@ -10,10 +10,10 @@ def crop():
         f, e = os.path.splitext(path+item)
 
         # Setting the points for cropped image
-        left = 64
-        top = 64
-        right = 192
-        bottom = 192
+        left = 128
+        top = 128
+        right = 384
+        bottom = 384
         
         # Cropped image of above dimension
         # (It will not change original image)

@@ -1,14 +1,14 @@
 import shutil, glob
 
-png_directory = "../clustering/KTLX_4/trained_clusters/cluster3/*png"
+png_directory = "../clustering/KLZK_4/KTLX_trained/cluster3/*png"
 png_list = glob.glob(png_directory)
 
-nexrad_directory = '../data/KTLX_data/'
+nexrad_directory = '../data/used_KLZK_data/full/'
 
-copy_to_directory = "../data/used_KTLX_data/cluster3/"
+copy_to_directory = "../data/used_KLZK_data/cluster3/"
 
 def find_v06(file_name):
-    inter_name = "KTLX"+file_name[47:(len(file_name)-4)]+"_V06"
+    inter_name = "KLZK"+file_name[43:(len(file_name)-4)]+"_V06"
     #print(inter_name)
     v06_name = inter_name[:len(inter_name)-11]+"_"+inter_name[len(inter_name)-10:]
     #print(v06_name)
